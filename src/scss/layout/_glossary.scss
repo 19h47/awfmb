@@ -1,0 +1,10 @@
+.Glossary
+{
+	&__column
+	{
+		&:nth-child(3n+4)
+		{
+			clear: both;
+		}
+	}
+}

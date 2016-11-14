@@ -1,0 +1,137 @@
+/**
+ * TYPOGRAPHIE
+ */
+
+html
+{}
+
+body
+{
+    -webkit-font-smoothing: antialiased;
+    font:
+    {
+        family: $font-body-family;
+        size: $base-font-size-px;
+        weight: map-get( $font-weight, regular );
+    }
+    line-height: ( ( $base-line-height / $base-font-size ) * 1em );
+    text-rendering: optimizeLegibility;
+    // https://medium.com/superhuman-co/how-to-hack-beautiful-flourishes-into-your-font-dc630bc52c3f#.m6nc9mjzr
+    font-feature-settings: 'kern' 1, 'dlig' 1, 'ss01' 1, 'opbd' 1;
+}
+
+$titles: 
+(
+    h1: 
+    (
+        98, // font-size(px/unitless)
+        102, // line-height(px/unitless)
+        map-get( $font-weight, bold ), // font-weight
+        $font-title-family, // font-family
+        20 // letter-spacing(from .psd)
+    ),
+
+    h2: 
+    (
+        58,
+        68,
+        map-get( $font-weight, bold ),
+        $font-title-family,
+        20   
+    ),
+
+    h3: 
+    (
+        34,
+        34,
+        map-get( $font-weight, bold ),
+        $font-title-family,
+        100
+    ),
+
+    h4: 
+    (
+        20,
+        34,
+        map-get( $font-weight, regular ),
+        $font-title-family,
+        100
+    ),
+
+    h5: 
+    (
+        11,
+        34,
+        map-get( $font-weight, bold ),
+        $font-title-family,
+        0
+    ),
+
+    h6:
+    (
+        6,
+        34,
+        map-get( $font-weight, bold),
+        $font-title-family,
+        0
+    )
+);
+
+@each $value, $map in $titles {
+    // Private var
+    $font-size: nth( $map, 1 );
+    $line-height: nth( $map, 2 );
+    $weight: nth( $map, 3 );
+    $family: nth( $map, 4 );
+    $letter-spacing: nth( $map, 5 );
+
+    #{$value}, .#{$value} {
+        font: 
+        {
+            family: $family;
+            size: ( $font-size / $base-font-size ) * 1em;
+            weight: $weight;
+        }
+
+        @include letter-spacing( $letter-spacing );
+        
+        // Line-height
+        @if $line-height == normal 
+        {
+            line-height: normal;
+        } 
+        @else 
+        {
+            line-height: ( $line-height / $font-size ) * 1em; 
+        }
+        
+        // Margin
+        @if $value == h1
+        {
+            @include margin
+            ( 
+                top ( ( ( $line-height / $font-size ) / 3 ) * 1em ) 
+                bottom ( ( ( $line-height / $font-size ) / 1.5 ) * 1em ) 
+                
+            );
+        }
+        @else if $value == h2
+        {
+            @include margin
+            ( 
+                top ( ( ( $line-height / $font-size ) / 2 ) * 1em ) 
+                bottom ( ( ( $line-height / $font-size ) / 2 ) * 1em ) 
+                
+            );
+        }
+        @else
+        {
+            @include margin
+            ( 
+                top ( ( $line-height / $font-size ) * 1em ) 
+                bottom 0
+                
+            );
+        }
+    }
+}

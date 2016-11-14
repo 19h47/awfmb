@@ -1,0 +1,131 @@
+/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+ * UTILITIES
+ * –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.hidden-touch
+{
+    .touch &
+    {
+        display: none !important;
+    }
+}
+
+// Clearfix ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+.clearfix
+{
+    &::after, &::before
+    {
+        content: "";
+        display: table;
+    }
+
+    &::after
+    {
+        clear: both;
+    }
+}
+
+// Menu ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+.menu-inline
+{
+
+    @if $import-utilities-margins
+    {
+        @extend .no-margin;
+    }
+    @else
+    {
+	   margin: 0;
+    }
+
+    @if $import-utilities-paddings
+    {
+        @extend .no-padding;
+    }
+    @else
+    {
+	   padding: 0;
+    }
+
+    list-style-type: none;  
+
+	li
+	{
+		display: inline-block;
+	}
+}
+
+// Border ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// Responsive container for videos
+.embed-container
+{
+    @extend .overflow-hidden;
+
+    @if $import-utilities-positions
+    {
+        @extend .position-relative;
+    }
+    @else
+    {
+        position: relative;
+    }
+
+    @include padding( bottom percentage( 1 / ( 16 / 9 ) ) );
+
+    height: 0;
+    max-width: 100%;
+    
+    > iframe,
+    > object,
+    > embed
+    {
+        @if $import-utilities-positions
+        {
+            @extend .position-absolute;
+        }
+        @else
+        {
+            position: absolute;
+        }
+        @include size( 100% );
+        
+        top: 0;
+        left: 0;
+    }
+}
+
+.img-fluid 
+{
+    @if $import-utilities-displays
+    {
+        @extend .display-block;
+    }
+    @else
+    {
+        display: block;
+    }
+
+    max-width: 100%;
+    height: auto;
+}
+
+.outline-none
+{
+    outline: none;
+}
+
+.is-on-top
+{
+    position: relative;
+    z-index: 10;
+}
+
+.cursor-pointer
+{
+    cursor: pointer;
+}
+
+.visually-hidden
+{
+    visibility: hidden;
+}

@@ -1,0 +1,18 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass functions.
+// -----------------------------------------------------------------------------
+
+// retrieve color from $color-variations map ie. `color(primary, base)`
+@function get_color($color-name, $color-variant:null) {
+    // color variant is optional
+  	@if ($color-variant != null) 
+  	{
+    	// map inception
+    	@return map-get( map-get( $color-variations, $color-name), $color-variant);
+
+  	} 
+  	@else 
+  	{
+    	@return map-get($color-variations, $color-name);
+  	}
+}

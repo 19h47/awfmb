@@ -1,0 +1,28 @@
+/**
+ * Paddings classes
+ */
+
+@if ( $import-utilities-paddings == true )
+{	
+	.no-padding
+	{
+    	padding: 0;
+    }
+
+	// ❗️ unquote is for strings
+	@each $padding-property in $padding-properties
+	{
+	    .no-padding-#{unquote($padding-property)}
+	    {
+	        padding-#{unquote($padding-property)}: 0;
+	    }
+
+	    @each $padding-value in $padding-values
+	    {
+	    	.padding-#{unquote($padding-property)}-#{$padding-value}
+	    	{
+	    		padding-#{unquote($padding-property)}: ( $padding-value / $base-font-size ) * 1em;
+	    	}
+	    }
+	}
+}

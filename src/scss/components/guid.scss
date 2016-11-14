@@ -1,0 +1,18 @@
+
+.Guid
+{
+	@extend %position-fixed;
+	
+	z-index: 10000;
+  
+	&__column
+	{
+		@include size(100%, 100%);
+		
+		background:
+		{
+			color: rgba( get_color( red, strong ), .2 );
+		}
+		color: rgba( get_color( black ), .2 );
+	}
+}

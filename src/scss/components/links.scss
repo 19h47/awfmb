@@ -1,0 +1,51 @@
+.Link
+{
+	opacity: .6;
+	transition: $ease-transition;
+
+	&:hover
+	{
+		opacity: 1;
+	}
+
+	&--underline
+	{
+		@extend .position-relative;
+
+		opacity: .6;
+		transition: opacity $ease-transition;
+
+		&:hover
+		{
+			opacity: 1;
+
+			&::after
+			{
+				border:
+				{
+					bottom: 
+					{
+						width: 2px;
+					}
+				}
+			}
+		}
+
+		&::after
+		{
+			@include absolute( top calc( 100% + 2px ) right 0 left 0 );
+
+			transition: $ease-transition;
+			border:
+			{
+				bottom:
+				{
+					color: currentColor;
+					style: solid;
+					width: 1px;
+				}
+			}
+			content: '';
+		}
+	}
+}

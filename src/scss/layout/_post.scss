@@ -1,0 +1,15 @@
+.Post
+{
+	&__content
+	{
+		h4, a
+		{
+			color: get_color( orange, bright );
+		}
+
+		a
+		{
+			@extend .Link--underline;
+		}
+	}
+}

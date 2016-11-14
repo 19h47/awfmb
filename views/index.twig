@@ -1,0 +1,39 @@
+{% extends "base.twig" %}
+
+{% block content %}
+<div class="l-container">
+	<div class="row">
+		
+		{% if characters is iterable and characters %}
+			
+			<div class="Glossary">
+				{% for character in characters %}
+					
+					{% set tags = fn( 'get_tags', { 'name__like': character, 'hide_empty': true, 'order': 'ASC' } ) %}
+					
+					{% if tags %}
+						<div class="col-xs-4 Glossary__column">
+							<p class="h3 uppercase color-white">
+								{{ character }}
+							</p>
+							{% for tag in tags %}
+
+								<div class="sans-serif capitalize no-margin h5" style="line-height: 1em">
+									<a class="Link tag-{{ tag.term_id }} tag-{{ tag.slug }} color-white" href="{{ fn( 'get_tag_link', tag.term_id ) }}"{% if tag.description %} title="{{ tag.description }}"{% endif %}>{{ tag.name }} ({{ tag.count }})</a>
+								</div>
+							
+							{% endfor %}
+
+						</div>
+					{% endif %}
+					
+				{% endfor %}
+			</div>
+
+		{% endif %}
+
+	</div>
+</div>
+
+		
+{% endblock %}

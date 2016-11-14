@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html {{site.language_attributes}}>
+
+	{% block head %}
+
+		{% include 'head.twig' %}
+
+	{% endblock %}
+	
+	<body class="{{ body_class }} color-black background-black" style="background: currentColor linear-gradient( rgba( 100, 97, 94, .2 ) 1px, transparent 1px ) left top / 1.7em 1.7em;">
+		
+		{% include 'panel.twig' %}
+		
+		<div class="wrapper">
+			<header class="l-container">
+				<div class="row">
+					<div class="col-xs-4">
+						<h1 class="h5 uppercase color-orange-bright color-white">
+							<a href="{{ site.url }}">{{ site.name }}</a>
+						</h1>
+						<br />
+					</div>
+					<div class="col-xs-8 text-xs-right">
+						<p class="h5 color-white sans-serif uppercase">
+							<span>News</span> 
+							<span>Musique</span> 
+							<span>
+								Chroniques
+								à Brac
+							</span>
+							<span>Art</span>
+							<span>NSFW</span>
+							<span>
+								Graphisme
+								Street Art
+							</span>
+							<span>
+								Cinéma
+								Série
+							</span>
+							<span>Foodinge</span>
+							<span>La boutique</span>
+							<span>Agenda</span>
+							<span>
+								Contact
+								Présentation
+							</span>
+						</p>
+					</div>
+				</div>
+			</header>
+			{% block content %}
+
+			{% endblock %}
+
+			{% block footer %}
+			
+				{% include 'footer.twig' %}
+				
+				{{ function('wp_footer') }}
+					
+			{% endblock %}
+		</div>
+	</body>
+</html>

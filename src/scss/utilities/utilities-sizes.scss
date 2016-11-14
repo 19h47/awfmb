@@ -1,0 +1,25 @@
+/**
+ * Sizes classes
+ */
+
+// If Breakpoint Slicer and import size are instanciates
+@if ( $slicer-breakpoints-settings == true ) and ( $import-utilities-sizes == true )
+{
+    @each $breakpoint in $slicer-breakpoint-names
+    {
+        @include from($breakpoint)
+        {
+            @each $size-dimension in $size-dimensions
+            {
+                @each $size-propertie-value, $size-propertie-name in $size-properties
+                {
+                    // Construct each class for each breakpoint
+                    .#{$size-propertie-value}-#{unquote($breakpoint)}-#{ round( $size-dimension ) }
+                    {
+                        #{$size-propertie-name}: ( percentage( $size-dimension / 100 ) );   
+                    }
+                }
+            }
+        }
+    }
+}

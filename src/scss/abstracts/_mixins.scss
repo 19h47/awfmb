@@ -1,0 +1,301 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+
+/**
+* Helper mixin to size elements
+* @param {Number} $width - Width
+* @param {Number} $height ($width) - Height
+*/
+@mixin size($width, $height: $width) 
+{
+    width: $width;
+    height: $height;
+}
+
+/**
+ * Set letter-spacing with unitless value from Photoshop.
+ * @param $value
+ * @include letter-spacing(48)
+ */
+@mixin letter-spacing($value)
+{
+    // if value is unitless, divided it by 1000 and set unit as em to get 
+    // Photoshop equivalent
+    letter-spacing: if( unitless( $value ), ( $value / 1000 * 1em ), $value);
+}
+
+
+/**
+ * Change the default text color for placeholders.
+ * @color valid color
+ */
+@mixin reset-placeholder($color: #ccc, $polyfill: false) {
+  &::-webkit-input-placeholder {
+    color: $color;
+  }
+
+  &::-moz-placeholder {
+    color: $color;
+    opacity: 1;
+  }
+
+  &:-moz-placeholder {
+    color: $color;
+    opacity: 1;
+  }
+
+  &:-ms-input-placeholder {
+    color: $color;
+  }
+
+  &::placeholder {
+    color: $color;
+  }
+
+  @if $polyfill {
+    .placeholder {
+      color: $color;
+    }
+  }
+}
+
+/**
+ * Change the default color for selection.
+ * @color valid color
+ */
+@mixin reset-selection($color, $background-color) {
+  ::selection {
+    background-color: $background-color;
+    color: $color;
+  }
+
+  ::-moz-selection {
+    background-color: $background-color;
+    color: $color;
+  }
+}
+
+/**
+ * Slightly lighten a color
+ * @access public
+ * @param {Color} $color - color to tint
+ * @param {Number} $percentage - percentage of `$color` in returned color
+ * @return {Color}
+ * https://css-tricks.com/snippets/sass/tint-shade-functions/
+ */
+
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+/** 
+ * Slightly darken a color
+ * @access public
+ * @param {Color} $color - color to shade
+ * @param {Number} $percentage - percentage of `$color` in returned color
+ * @return {Color}
+ * https://css-tricks.com/snippets/sass/tint-shade-functions/
+ */
+
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
+/**
+ * http://hugogiraudel.com/2014/05/19/new-offsets-sass-mixin/
+ */
+@mixin position( $position, $args: () ) 
+{
+    $offsets: top right bottom left;
+    position: $position;
+  
+    @each $offset in $offsets 
+    {
+        // Doing the magic trick
+        // All this code happens inside the loop
+        $index: index( $args, $offset );
+
+        // If offset is found in the list
+        @if $index 
+        {
+
+            // If it is found at last position
+            @if $index == length( $args ) 
+            {
+                #{$offset}: 0;
+            }
+
+            // If it is followed by a value
+            @else 
+            {
+                $next: nth( $args, $index + 1 );
+
+                // If the next value is value length
+                @if is-valid-length( $next ) {
+                    #{$offset}: $next;
+                }
+
+                // If the next value is another offset
+                @else if index( $offsets, $next ) {
+                    #{$offset}: 0;
+                }
+
+                // If it is invalid
+                @else 
+                {
+                    @warn "Invalid value `#{$next}` for offset `#{$offset}`.";
+                }
+            }
+        }
+    }
+}
+
+@mixin absolute($args: () ) 
+{
+    @include position( absolute, $args );
+}
+ 
+@mixin fixed($args: () ) 
+{
+    @include position( fixed, $args );
+}
+ 
+@mixin relative($args: () ) 
+{
+    @include position( relative, $args );
+}
+
+/**
+ *
+ */
+@mixin margin( $args: () ) 
+{
+    $offsets: top right bottom left;
+    
+    @each $offset in $offsets 
+    {
+        // Doing the magic trick
+        // All this code happens inside the loop
+        $index: index( $args, $offset );
+
+        // If offset is found in the list
+        @if $index 
+        {
+            // If it is found at last position
+            @if $index == length( $args ) 
+            {
+
+                margin-#{$offset}: 0;
+            }
+
+            // If it is followed by a value
+            @else 
+            {
+                $next: nth( $args, $index + 1 );
+
+                // If the next value is value length
+                @if is-valid-length( $next ) {
+                    margin-#{$offset}: $next;
+                }
+
+                // If the next value is another offset
+                @else if index( $offsets, $next ) {
+                    margin-#{$offset}: 0;
+                }
+
+                // If it is invalid
+                @else 
+                {
+                    @warn "Invalid value `#{$next}` for offset `margin-#{$offset}`.";
+                }
+            }
+        }
+    }
+}
+
+/**
+ *
+ */
+@mixin padding( $args: () ) 
+{
+    $offsets: top right bottom left;
+    
+    @each $offset in $offsets 
+    {
+        // Doing the magic trick
+        // All this code happens inside the loop
+        $index: index( $args, $offset );
+
+        // If offset is found in the list
+        @if $index 
+        {
+            // If it is found at last position
+            @if $index == length( $args ) 
+            {
+
+                padding-#{$offset}: 0;
+            }
+
+            // If it is followed by a value
+            @else 
+            {
+                $next: nth( $args, $index + 1 );
+
+                // If the next value is value length
+                @if is-valid-length( $next ) {
+                    padding-#{$offset}: $next;
+                }
+
+                // If the next value is another offset
+                @else if index( $offsets, $next ) {
+                    padding-#{$offset}: 0;
+                }
+
+                // If it is invalid
+                @else 
+                {
+                    @warn "Invalid value `#{$next}` for offset `padding-#{$offset}`.";
+                }
+            }
+        }
+    }
+}
+
+/**
+ * Create some classes from $color-variations map
+ * $properties list of properties ( name of class, property )
+ * usage @include create_classes_color( $property1 '$.className', $property2 '$.className2' )
+ */
+// The ... is used for asign multiple args
+@mixin create_classes_color( $properties... )
+{
+    @each $key, $value in $color-variations 
+    {
+        // maps require a second loop
+        @if type-of($value) == 'map'
+        {
+            @each $subname, $subvalue in $value 
+            {  
+                @each $property-key, $property-value in $properties
+                {
+                    // each item in sub map
+                    #{unquote($property-value)}-#{$key}-#{$subname}
+                    {
+                        #{$property-key}: $subvalue;
+                    }
+                }
+            }
+        }
+        @elseif
+        {
+            @each $property-key, $property-value in $properties
+            {
+                #{unquote($property-value)}-#{$key}
+                {
+                    #{$property-key}: $value;
+                }
+            }
+        }
+    }
+}

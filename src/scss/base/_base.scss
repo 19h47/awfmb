@@ -1,0 +1,75 @@
+/**
+ * BASE
+ */
+
+html,
+body
+{
+    height: 100%;
+}
+
+body
+{
+    color: get_color( black );
+}
+
+a
+{
+	color: currentColor;
+	text-decoration: none;
+    transition: $ease-transition;
+}
+
+i
+{
+    font-style: normal;
+}
+
+p, 
+ul, 
+ol, 
+pre, 
+table, 
+blockquote 
+{
+    @include margin( top 0 bottom ( ( $base-line-height / $base-font-size ) * 1em ) );
+}
+
+ul ul, ol ol, ul ol, ol ul 
+{
+    @include margin( top 0 bottom 0 );
+}
+
+ul, ol
+{
+    padding: 0 0 0 1em;
+    list-style-type: none;
+}
+ul
+{
+    list-style: none;
+}
+
+hr, .hr 
+{
+    @include margin( top -1px right 0 bottom -1px left 0 );
+    border: 1px solid;
+}
+
+sub, 
+sup 
+{
+    @extend .position-relative, .valign-baseline;
+
+    line-height: 0;
+}
+
+sup 
+{
+    top: -0.5em;
+}
+
+sub 
+{
+    bottom: -0.25em;
+}

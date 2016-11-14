@@ -1,0 +1,65 @@
+/*
+ * Utilities Settings
+ **/
+
+$import-utilities-vertical-alignments: true;
+$vertical-alignment-values: 'baseline' 'sub' 'super' 'top' 'text-top' 'middle' 'bottom' 'text-bottom' 'initial' 'inherit';
+
+$import-utilities-colors: true;
+
+$import-utilities-displays: true;
+$display-values: 'inline' 'block' 'flex' 'inline-block' 'inline-flex' 'inline-table' 'list-item' 'run-in' 'table' 'table-caption' 'table-column-group' 'table-header-group' 'table-footer-group' 'table-row-group' 'table-cell' 'table-column' 'table-row' 'none' 'initial' 'inherit';
+
+$import-utilities-float: true;
+$float-values: 'none' 'left' 'right' 'initial' 'inherit';
+
+$import-utilities-fonts: true;
+
+$import-utilities-margins: true;
+$margin-properties: 'top' 'right' 'bottom' 'left';
+$margin-values: 5 10 15;
+
+$import-utilities-opacities: true;
+$opacity-values: none;
+
+$import-utilities-overflows: true;
+$overflow-values: 'visible' 'hidden' 'scroll' 'auto' 'initial' 'inherit';
+
+$import-utilities-paddings: true;
+$padding-properties: 'top' 'right' 'bottom' 'left';
+$padding-values: 15 20;
+
+$import-utilities-positions: true;
+$position-values: 'static' 'absolute' 'fixed' 'relative' 'initial' 'inherit';
+
+$import-utilities-sizes: true;
+$size-properties: 
+(
+    w: width, 
+    h: height
+);
+$size-dimensions: 100 90 80 70 66 60 50 40 (100/3) 30 25  20 10 (25/3);
+
+$import-utilities-texts: true;
+$text-align-values: 'center', 'none', 'left', 'right';
+
+$import-utilities-z-indexes: true;
+$z-index-values: 10;
+
+// Unfortunately we can't at this point make an if statement with an @import
+// http://stackoverflow.com/questions/13879042/import-in-if-statement-in-sass
+@import 
+	'utilities',
+	'utilities-alignments',
+	'utilities-colors',
+	'utilities-displays',
+	'utilities-floats',
+	'utilities-fonts',
+	'utilities-margins',
+	'utilities-opacities',
+	'utilities-overflows',
+	'utilities-paddings',
+	'utilities-positions',
+	'utilities-sizes',
+	'utilities-texts',
+	'utilities-z-indexes';

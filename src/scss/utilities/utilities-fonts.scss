@@ -1,0 +1,54 @@
+/**
+ * Fonts classes
+ */
+
+@if ( $import-utilities-fonts == true )
+{
+    .serif
+    {
+        font-family: $font-body-family;
+    }
+    .sans-serif
+    {
+        font-family: $font-title-family;
+    }
+    .font-body
+    {
+        font-family: $font-body-family;
+    }
+    .font-title
+    {
+        font-family: $font-title-family;
+    }
+    .uppercase
+    {
+    	text-transform: uppercase;
+    }
+    .capitalize 
+    {
+        text-transform: capitalize;
+    }
+
+    .underline 
+    {
+        text-decoration: underline;
+    }
+
+    @each $font-size in $font-sizes
+    {
+        // Construct each utilities classes for each font-size found in abstracts/variables
+        .font-size-#{$font-size}
+        {
+            font-size: #{$font-size / $base-font-size}em;
+        }
+    }
+
+    @each $weight-name, $weight-value in $font-weight
+    {
+        // Construct each utilities classes for each font-weight found in abstracts/variables
+        .font-#{$weight-name}
+        {
+            font-weight: #{$weight-value};   
+        }
+    }
+}

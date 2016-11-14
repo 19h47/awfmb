@@ -1,0 +1,14 @@
+/**
+ * Overflows classes
+ */
+
+@if ( $import-utilities-overflows == true )
+{
+	@each $overflow-value in $overflow-values
+	{
+	    .overflow-#{ unquote( $overflow-value ) }
+	    {
+	        overflow: #{ unquote( $overflow-value ) };
+	    }
+	}
+}

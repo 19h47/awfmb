@@ -1,0 +1,45 @@
+/**
+ * Display
+ */
+
+@if ( $import-utilities-displays == true )
+{
+    @each $display-value in $display-values
+    {
+        .display-#{ unquote( $display-value )}
+        {
+            display: #{ unquote( $display-value )};
+
+            @if $display-value == 'table-cell'
+            {
+                &.vertical-align-middle
+                {
+                    vertical-align: middle;
+                }
+
+                &.vertical-align-bottom
+                {
+                    vertical-align: bottom;
+                }
+            }
+        }
+    }
+    .display
+    {
+        &-sm
+        {
+            @include from('sm')
+            {
+                &-table
+                {
+                    display: table;
+                }
+
+                &-table-cell
+                {
+                    display: table-cell;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,54 @@
+{% extends "base.twig" %}
+
+{% block content %}
+	
+	<main class="l-container position-relative color-orange-light-grayish">
+		
+		<div class="row">
+			<div class="col-xs-12 text-xs-center">
+				<h4 class="color-gray-very-light">
+
+					<span class="color-orange-bright">
+						<a href="{{ post.category.link }}">{{ post.category }}</a>
+					</span> par <a href="{{post.author.path}}" class="color-orange-bright">{{ post.author.name }}</a><br>
+					–
+				</h4>
+				<h1>
+					{{ post.title }}
+				</h1>
+				<p class="h4 color-gray-very-light">
+					{{ post.date }} – Commentaire : 0
+				</p>
+			</div>
+		</div>
+		
+		{% if post.terms('tags') %}
+			<div class="col-xs-6 col-xs-offset-3 text-xs-center">
+				{% for term in post.terms('tags') %}
+			        <a class="h5 font-bold uppercase" href="{{term.link}}">{{term.name}}</a>
+			    {% endfor %}
+			</div>
+		{% endif %}
+
+		<div class="row">
+			<div class="col-xs-6 col-xs-offset-3">
+				<article class="Post__content Post__content--{{ post.ID }}">
+					{{ post.content }}
+				</article>
+			</div>
+		</div>
+
+		<div class="row">
+			<footer>
+				<div class="col-xs-12">
+					<p class="text-xs-center color-gray-very-light">
+						Related Posts
+					</p>
+				</div>
+				
+				{% include 'nav/posts-nav-link.twig' %}
+
+			</footer>
+		</div>
+	</main>
+{% endblock %}

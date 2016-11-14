@@ -1,0 +1,44 @@
+/**
+ * Placeholders
+ */
+
+%position-absolute
+{
+	@include absolute( top 0 right 0 bottom 0 left 0 );
+}
+
+%position-fixed
+{
+	@include fixed( top 0 right 0 bottom 0 left 0 );
+}
+
+%background-cover-center
+{
+	background:
+    {
+    	position: center;
+    	size: cover;
+    }
+}
+
+%background-current-color
+{
+	background:
+	{
+		color: currentColor;
+	}
+}
+
+$border-properties: 'top' 'right' 'bottom' 'left';
+    
+@each $border-propertie in $border-properties
+{
+    %border-#{unquote($border-propertie)}
+    {
+        border-#{unquote($border-propertie)}: 
+        {
+        	width: 1px;
+        	style: solid;
+        }
+    }
+}

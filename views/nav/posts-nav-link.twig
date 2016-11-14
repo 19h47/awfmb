@@ -1,0 +1,16 @@
+{% if post.prev %}
+	<div class="col-xs-4 col-xs-offset-2 text-xs-left">
+
+		{% include 'nav/previous-post-link.twig' %}
+
+	</div>
+{% endif %}
+
+{% if post.next %}
+	<div class="col-xs-4 text-xs-right{% if post.prev is empty %} col-xs-offset-6{% endif %}">
+		
+		{% include 'nav/next-post-link.twig' %}
+
+	</div>
+		
+{% endif %}

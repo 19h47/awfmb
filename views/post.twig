@@ -1,0 +1,37 @@
+<article class="Card color-white">
+
+	<a href="{{ post.link }}" class="display-block position-relative">
+		<div class="Card__thumbnail">
+				<div class="Card__thumbnail__content">
+					<p class="Card__date h5 no-margin font-regular">
+						{{ post.date }}
+					</p> 
+					<p class="Card__category h5 no-margin font-regular color-orange-bright">
+						 {{ post.category }}
+					</p>
+
+					<div class="Card__thumbnail__content__footer">
+						<p class="Card__author h5 no-margin-top color-orange-bright">
+							{{ post.author.name }}
+						</p>
+						<p class="Card__title h3">
+							{{ post.title }}
+						</p>
+						<p class="font-bold font-size-34 color-orange-bright no-margin">–</p>
+					</div>
+				</div>
+				<div class="Card__background" style="background-image: url('{{ post.thumbnail.url }}');"></div>
+		</div>
+	</a>
+	<!-- <div class="Card__footer">
+		<br>
+		<p>
+			<?php if( $new['tags'] ) : ?>
+				<?php foreach ( $new['tags'] as $name => $tag ) : ?>
+					<a class="Card__tag sans-serif Link--underline" href=""><?php echo $tag; ?></a>
+				<?php endforeach; ?>
+			<?php endif; ?>
+		</p>
+	</div> -->	
+
+</article>

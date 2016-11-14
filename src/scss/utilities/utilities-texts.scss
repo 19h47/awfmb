@@ -1,0 +1,20 @@
+/**
+ * Texts classes
+ */
+
+@if ($slicer-breakpoints-settings == true) and ( $import-utilities-texts == true )
+{
+	@each $breakpoint in $slicer-breakpoint-names 
+	{
+	    @include from($breakpoint)
+	    {
+	    	@each $text-align-value in $text-align-values
+	    	{
+		        .text-#{unquote($breakpoint)}-#{unquote($text-align-value)}
+		        {
+		            text-align: #{unquote($text-align-value)};
+		        }
+		    }
+	    }
+	}
+}

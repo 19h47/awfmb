@@ -1,0 +1,61 @@
+.Card
+{
+	@extend .position-relative;
+	@include margin( top $gutter-width bottom $gutter-width );
+
+	&__thumbnail
+	{
+		@extend .position-relative;
+		@include padding( bottom 100% );
+
+		&__content
+		{
+			@extend %position-absolute;
+
+			background:
+			{
+				color: rgba( get_color( black ), .6 );
+			}
+			z-index: 2;
+
+			&__footer
+			{
+				@include absolute( right 0 left 0 bottom 0 );
+				@include padding( top $gutter-width right $gutter-width bottom 0 left $gutter-width );
+				// @include margin( bottom -5px );
+			}
+		}
+	}
+
+	&__background
+	{
+		@extend %position-absolute, %background-cover-center;
+
+		z-index: 1;
+	}
+
+	&__title
+	{
+		@extend .no-margin-top;
+	}
+	&__author
+	{
+		@extend .no-margin-bottom;
+	}
+	&__date
+	{
+		@include absolute( top 0 left 0 );
+		@include padding( top $gutter-width right $gutter-width left $gutter-width )
+	}
+
+	&__category
+	{
+		@include absolute( top 0 right 0 );
+		@include padding( top $gutter-width right $gutter-width left $gutter-width )		
+	}
+
+	&__tag
+	{
+		text-transform: capitalize;
+	}
+}

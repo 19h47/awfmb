@@ -1,0 +1,24 @@
+{% extends "base.twig" %}
+
+
+{% block content %}
+
+
+	<main class="l-container position-relative color-orange-light-grayish">
+		<div class="row">
+			
+
+			{% for post in posts %}
+				
+				<div class="col-xs-4">
+					{% include 'post.twig' %}
+				</div>
+
+			{% endfor %}
+			
+			<div class="col-xs-12">
+				<button class="js-load-news h4 color-white">Article news</button>
+			</div>
+		</div>
+	</main>
+{% endblock %}

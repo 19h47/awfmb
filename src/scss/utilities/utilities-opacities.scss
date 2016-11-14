@@ -1,0 +1,24 @@
+/**
+ * Opacities classes
+ */
+
+@if ( $import-utilities-opacities == true )
+{
+    @each $opacity-value in $opacity-values
+    {
+        @if $opacity-value == none
+        {
+            .opacity-#{ $opacity-value }
+            {
+                opacity: 0;
+            }
+        }
+        @else
+        {
+            .opacity-#{ $opacity-value }
+            {
+                opacity: #{ $opacity-value };
+            }
+        }
+    }
+}

@@ -1,0 +1,45 @@
+/**
+ * Margins classes
+ */
+
+@if ( $import-utilities-margins == true )
+{   
+    .no-margin
+    {
+        margin: 0;
+    }
+
+    @each $margin-propertie in $margin-properties
+    {
+        .no-margin-#{unquote($margin-propertie)}
+        {
+            margin-#{unquote($margin-propertie)}: 0;
+        }
+
+        @each $margin-value in $margin-values
+        {
+            .margin-#{unquote($margin-propertie)}-#{$margin-value}
+            {
+                margin-#{unquote($margin-propertie)}: ( $margin-value / $base-font-size ) * 1em;
+            }
+        }
+    }
+    
+    @if ( $slicer-breakpoints-settings == true )
+    {
+        @each $breakpoint in $slicer-breakpoint-names
+        {
+            @include from($breakpoint)
+            {
+                @each $margin-propertie in $margin-properties
+                {
+                    // Construct each class for each breakpoint
+                    .no-margin-#{unquote($breakpoint)}-#{unquote($margin-propertie)}
+                    {
+                        margin-#{unquote($margin-propertie)}: 0;   
+                    }
+                }
+            }
+        }
+    }
+}
